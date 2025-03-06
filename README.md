@@ -1,5 +1,5 @@
 # SmartAgent
-import random
+ import random
 import matplotlib.pyplot as plt
 
 class GameAgent:
