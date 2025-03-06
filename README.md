@@ -15,10 +15,16 @@ class GameAgent:
     dificuldade= int(input("Escolha uma dificuldade: Fácil(1), Normal(2), Difícil(3)"))
     if dificuldade ==1:
       max_attempts = 10
+      import hint1
+      import hint2
+      import hint3
     elif dificuldade ==2:
       max_attempts = 7
+      import hint1
+      import hint2
     elif dificuldade ==3:
       max_attempts = 5
+      import hint1
 
   def make_guess(self , guess):
     self.attempts += 1
@@ -33,9 +39,30 @@ class GameAgent:
     elif guess < self.secret_number:
       self.state = "Tentativa errada (muito baixo)."
       return "O número é maior. Tente novamente."
-    else:
+    elif guess > self.secret_number:
       self.state = "Tentativa errada (muito alto)."
       return "O número é menor. Tente novamente."
+
+    def hint1():
+      if self.secret_number % 2 == int:
+       return "O número é par"
+      else:
+        return "O número é ímpar"
+
+    def hint2():
+      if self.secret_number % 5 == int:
+       return "O número é divisível por 5"
+      else:
+        return "O número não é divisível por 5"
+
+    def hint3():
+      if self.secret_number > 50:
+       return "O número é maior que 50"
+      else: 
+        return "O número é menor que 50"
+
+
+
 
   
 
@@ -57,3 +84,11 @@ class GameAgent:
     plt.title("Evolução das Tentativas do Jogador")
     plt.legend()
     plt.show()
+
+agent = GameAgent(secret_number=42)
+guesses = [10, 20, 30, 40, 45, 42]
+for g in guesses:
+    agent.make_guess(g)
+plot_attempts(agent)
+
+
